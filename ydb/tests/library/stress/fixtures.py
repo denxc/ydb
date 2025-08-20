@@ -20,6 +20,7 @@ class StressFixture:
         kwargs["extra_feature_flags"] = extra_feature_flags
         column_shard_config = kwargs.get("column_shard_config", {})
         column_shard_config["disabled_on_scheme_shard"] = False
+        kwargs["column_shard_config"] = column_shard_config
 
         self.config = KikimrConfigGenerator(
             binary_paths=self.all_binary_paths,
