@@ -8,9 +8,15 @@ ELSEIF(DEFINED YDB_DRIVER_BINARY)  # custom in-source ydbd
         ${YDB_DRIVER_BINARY}/..
     )
 ELSE()  # default ydbd from current source tree
-    SET(YDB_DRIVER_BINARY "ydb/apps/ydbd/ydbd")
+    # SET(YDB_DRIVER_BINARY "ydb/apps/ydbd/ydbd")
+    # DEPENDS(
+    #     ydb/apps/ydbd
+    # )
+
+    SET(YDB_DRIVER_BINARY ydb/tests/library/compatibility/binaries/ydbd-inter)
+
     DEPENDS(
-        ydb/apps/ydbd
+        ydb/tests/library/compatibility/binaries
     )
 ENDIF()
 
