@@ -13,6 +13,14 @@ class StressFixture:
         self.all_binary_paths = [kikimr_driver_path()]
 
     def setup_cluster(self, **kwargs):
+        extra_feature_flags = kwargs.get("extra_feature_flags", [])
+        extra_feature_flags = list(extra_feature_flags)
+        extra_feature_flags.append("enable_table_datetime64")
+        extra_feature_flags.append("enable_parameterized_decimal")
+        kwargs["extra_feature_flags"] = extra_feature_flags
+        column_shard_config = kwargs.get("column_shard_config", {})
+        column_shard_config["disabled_on_scheme_shard"] = False
+
         self.config = KikimrConfigGenerator(
             binary_paths=self.all_binary_paths,
             **kwargs,
