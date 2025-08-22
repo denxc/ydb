@@ -38,7 +38,7 @@ class WorkloadTopicBase(WorkloadTestBase):
             use_chunks=True,
             duration_param="--duration",
             nemesis=nemesis_enabled,
-            nodes_percentage=100
+            nodes_percentage=1
         )
 
 

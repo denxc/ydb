@@ -3,6 +3,7 @@ import subprocess
 import tempfile
 import os
 import stat
+import time
 from library.python import resource
 
 
@@ -48,8 +49,11 @@ class YdbTopicWorkload(WorkloadBase):
         ] + subcmds + ['--topic', f'{self.table_prefix}']
 
     def cmd_run(self, cmd):
+        start = time.time()
         logger.debug(f"Running cmd {cmd}")
+        print(f"Running cmd {cmd}")
         subprocess.run(cmd, check=True, text=True)
+        print(f"Finished cmd in {time.time() - start}")
 
     def __loop(self):
         # init
